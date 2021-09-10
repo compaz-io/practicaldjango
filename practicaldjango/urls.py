@@ -17,7 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 
+import debug_toolbar
+from django.conf import settings
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('challenges/', include('challenges.urls'))
+    path('challenges/', include('challenges.urls')),
+    path('__debug__', include(debug_toolbar.urls))
 ]
