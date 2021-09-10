@@ -3,6 +3,9 @@ from django.http import HttpResponse, HttpResponseNotFound
 
 # Create your views here.
 
+def monthly_challenge_by_number(request, month):
+    return HttpResponse(month)
+
 def monthly_challenges(request, month):
     challenge_text = None
     if month == 'january':
@@ -13,5 +16,5 @@ def monthly_challenges(request, month):
         challenge_text = "<body>Learn Django for at least 20 minutes every day!</body>"
     else:
         return HttpResponseNotFound("<body>This month is not supported!</body>")
-        
+
     return HttpResponse(challenge_text)
