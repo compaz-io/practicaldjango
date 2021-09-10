@@ -6,18 +6,18 @@ from django.template.loader import render_to_string
 # Create your views here.
 
 monthly_challenges = {
-    'january': '<body>Eat no meat for the entire month!</body>',
-    'february': '<body>Walk for at least 20 minutes every day!</body>',
-    'march': '<body>Learn Django for at least 20 minutes every day!</body>',
-    'april': '<body>Learn Django for at least 20 minutes every day!</body>',
-    'may': '<body>Learn Django for at least 20 minutes every day - may!</body>',
-    'june': '<body>Learn Django for at least 20 minutes every day! - june</body>',
-    'july': '<body>Learn Django for at least 20 minutes every day! - july</body>',
-    'august': '<body>Learn Django for at least 20 minutes every day! - august</body>',
-    'september': '<body>Learn Django for at least 20 minutes every day! - sep</body>',
-    'october': '<body>Learn Django for at least 20 minutes every day! oct</body>',
-    'november': '<body>Learn Django for at least 20 minutes every day! nov</body>',
-    'december': '<body>Learn Django for at least 20 minutes every day! dec</body>',
+    'january': 'Eat no meat for the entire month!',
+    'february': 'Walk for at least 20 minutes every day!',
+    'march': 'Learn Django for at least 20 minutes every day!',
+    'april': 'Learn Django for at least 20 minutes every day!',
+    'may': 'Learn Django for at least 20 minutes every day - may!',
+    'june': 'Learn Django for at least 20 minutes every day! - june',
+    'july': 'Learn Django for at least 20 minutes every day! - july',
+    'august': 'Learn Django for at least 20 minutes every day! - august',
+    'september': 'Learn Django for at least 20 minutes every day! - sep',
+    'october': 'Learn Django for at least 20 minutes every day! oct',
+    'november': 'Learn Django for at least 20 minutes every day! nov',
+    'december': 'Learn Django for at least 20 minutes every day! dec',
 }
 
 def index(request):
@@ -45,8 +45,10 @@ def monthly_challenge_by_number(request, month):
 def monthly_challenge(request, month):
     try:
         challenge_text = monthly_challenges[month]
+        print(challenge_text, month.capitalize())
         return render(request, 'challenges/challenge.html', {
-            'text': challenge_text
+            'text': challenge_text,
+            'month': month.capitalize(),
         })
     except:
         return HttpResponseNotFound(f"<p>Month <strong>{month}</strong> is not supported</p>")
